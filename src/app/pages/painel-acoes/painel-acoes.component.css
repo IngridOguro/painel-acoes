@@ -11,6 +11,18 @@ th, td {
   text-align: left;
 }
 
+.valor-positivo {
+  color: green;
+}
+
+.valor-negativo {
+  color: red;
+}
+
+.valor-zero {
+  color: black;
+}
+
 th {
   background-color: #f0f0f0;
   font-weight: bold;
@@ -26,4 +38,8 @@ tr:hover {
 
 .logo{
   height: 100%;
+}
+
+.valor-direita {
+  text-align: right;
 }

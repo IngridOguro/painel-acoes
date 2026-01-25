@@ -2,13 +2,13 @@
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">Stock</th>
-      <th scope="col">Name</th>
-      <th scope="col">Close</th>
-      <th scope="col">Change</th>
+      <th scope="col">Código</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Fechamento</th>
+      <th scope="col">Variação (%)</th>
       <th scope="col">Volume</th>
-      <th scope="col">Marketcap</th>
-      <th scope="col">Sector</th>
+      <th scope="col">Captação de mercado</th>
+      <th scope="col">Setor</th>
     </tr>
   </thead>
   <tbody>
@@ -20,10 +20,10 @@
       </td>
       <td>{{ stock.stock }}</td>
       <td>{{ stock.name }}</td>
-      <td>{{ stock.close }}</td>
-      <td>{{ stock.change }}</td>
-      <td>{{ stock.volume }}</td>
-      <td>{{ stock.marketcap }}</td>
+      <td class="valor-direita">{{ stock.closeString }}</td>
+      <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
+      <td class="valor-direita">{{ stock.volume }}</td>
+      <td class="valor-direita">{{ stock.marketcap }}</td>
       <td>{{ stock.sector }}</td>
     </tr>
   </tbody>
