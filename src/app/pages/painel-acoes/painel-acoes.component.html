@@ -1,1 +1,30 @@
-<p>painel-acoes works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Stock</th>
+      <th scope="col">Name</th>
+      <th scope="col">Close</th>
+      <th scope="col">Change</th>
+      <th scope="col">Volume</th>
+      <th scope="col">Marketcap</th>
+      <th scope="col">Sector</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stock of stocks">
+      <td>
+        <div class="div-img">
+          <img class="logo" src={{stock.logo}} alt="">
+        </div>
+      </td>
+      <td>{{ stock.stock }}</td>
+      <td>{{ stock.name }}</td>
+      <td>{{ stock.close }}</td>
+      <td>{{ stock.change }}</td>
+      <td>{{ stock.volume }}</td>
+      <td>{{ stock.marketcap }}</td>
+      <td>{{ stock.sector }}</td>
+    </tr>
+  </tbody>
+</table>
