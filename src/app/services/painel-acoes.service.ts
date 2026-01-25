@@ -10,7 +10,7 @@ export class PainelAcoesService {
 
   constructor(private http: HttpClient) { }
 
-  obterAcoes(tickers: string[]) {
+  obterAcoes() {
     const url =
     `${this.baseUrl}/?limit=50&token=${this.token}`;
 

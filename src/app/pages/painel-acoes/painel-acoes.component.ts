@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { PainelAcoesService } from '../../services/painel-acoes.service';
 import {JsonPipe} from '@angular/common'
-import { NgIf, NgFor, NgClass,DecimalPipe } from '@angular/common';
+import { NgIf, NgFor, NgClass,DecimalPipe, CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Acao } from '../../models/acoes.model';
 
 @Component({
   selector: 'app-painel-acoes',
   standalone: true,
-  imports: [JsonPipe,NgIf,NgFor,NgClass,DecimalPipe],
+  imports: [JsonPipe,NgIf,NgFor,NgClass,DecimalPipe, CommonModule,FormsModule ],
   templateUrl: './painel-acoes.component.html',
   styleUrl: './painel-acoes.component.css'
 })
@@ -23,11 +24,52 @@ export class PainelAcoesComponent implements OnInit{
     this.carregarAcoes();
   }
 
+  filtroNome: string = '';
+
+  get stocksFiltrados(): Acao[] {
+    if (!this.filtroNome) {
+      return this.stocks;
+    }
+    return this.stocks.filter(stock =>
+      stock.name.toLowerCase().includes(this.filtroNome.toLowerCase())
+    );
+  }
+
+colunaOrdenada: string | null = null;
+ordemAscendente: boolean = true;
+
+ordenarPor(coluna: keyof Acao): void {
+  if (this.colunaOrdenada === coluna) {
+    this.ordemAscendente = !this.ordemAscendente;
+  } else {
+    this.colunaOrdenada = coluna;
+    this.ordemAscendente = true;
+  }
+
+  this.stocks.sort((a, b) => {
+    const valA = a[coluna];
+    const valB = b[coluna];
+
+    if (typeof valA === 'string' && typeof valB === 'string') {
+      return this.ordemAscendente
+        ? valA.localeCompare(valB)
+        : valB.localeCompare(valA);
+    }
+
+    if (typeof valA === 'number' && typeof valB === 'number') {
+      return this.ordemAscendente ? valA - valB : valB - valA;
+    }
+
+    return 0;
+  });
+}
+
+
   carregarAcoes(): void {
   this.loading = true;
   this.error = false;
 
-  this.painelAcoesService.obterAcoes(['ITUB4']).subscribe({
+  this.painelAcoesService.obterAcoes().subscribe({
     next: (response) => {
       this.stocks = this.mapearAcoes(response.stocks);
       this.loading = false;
