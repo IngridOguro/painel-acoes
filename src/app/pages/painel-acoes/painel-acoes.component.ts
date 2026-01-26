@@ -4,6 +4,7 @@ import {JsonPipe} from '@angular/common'
 import { NgIf, NgFor, NgClass,DecimalPipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Acao } from '../../models/acoes.model';
+import { AcaoDetalhe } from '../../models/acao.model';
 
 @Component({
   selector: 'app-painel-acoes',
@@ -15,16 +16,48 @@ import { Acao } from '../../models/acoes.model';
 export class PainelAcoesComponent implements OnInit{
 
   stocks: Acao[] = [];
+  stock: any;
   loading = false;
   error = false;
   paginaAtual = 1;
   itensPorPagina = 12;
   totalItens=0;
+  linhaExpandida: string | null = null;
 
  constructor(private painelAcoesService: PainelAcoesService) {}
 
   ngOnInit(): void {
     this.carregarAcoes();
+
+  }
+
+  expandirDetalhes(stock: Acao): void {
+  if (this.linhaExpandida === stock.stock) {
+    this.linhaExpandida = null;
+  } else {
+    this.linhaExpandida = stock.stock;
+  }
+  this.carregarAcao(stock.stock);
+
+}
+
+  carregarAcao(ticket:string):void{
+  this.painelAcoesService.obterAcao(ticket).subscribe({
+    next: (response) => {
+      const detalhes = this.mapearAcao(response.results[0]);
+
+      const acao = this.stocks.find(s => s.stock === ticket);
+      if (acao) {
+        acao.detalhes = detalhes;
+      }
+      console.log(acao);
+    },
+    error: () => {
+      this.error = true;
+      this.loading = false;
+    }
+  });
+
   }
 
 get stocksPaginados(): Acao[] {
@@ -32,7 +65,6 @@ get stocksPaginados(): Acao[] {
   const fim = inicio + this.itensPorPagina;
   return this.stocksFiltrados.slice(inicio, fim);
 }
-
 
 filtroCodigo: string = '';
 
@@ -45,7 +77,6 @@ get stocksFiltrados(): Acao[] {
     stock.stock.toLowerCase().includes(this.filtroCodigo.toLowerCase())
   );
 }
-
 
 colunaOrdenada: string | null = null;
 ordemAscendente: boolean = true;
@@ -94,6 +125,21 @@ ordenarPor(coluna: keyof Acao): void {
   });
 }
 
+  mapearAcao(results: any): AcaoDetalhe {
+    return {
+    priceEarnings: results.priceEarnings,
+    earningsPerShare: results.earningsPerShare ,
+    marketCap: results.marketCap ,
+    fiftyTwoWeekLow: results.fiftyTwoWeekLow ,
+    fiftyTwoWeekHigh: results.fiftyTwoWeekHigh ,
+    fiftyTwoWeekRange: results.fiftyTwoWeekRange ,
+    regularMarketOpen: results.regularMarketOpen ,
+    regularMarketPreviousClose: results.regularMarketPreviousClose ,
+    regularMarketPrice: results.regularMarketPrice ,
+    regularMarketTime: results.regularMarketTime
+    }
+  }
+
   mapearAcoes(results: any[]): Acao[] {
   return results.map((item): Acao => ({
     stock: item.stock,
@@ -106,7 +152,8 @@ ordenarPor(coluna: keyof Acao): void {
     marketcap:this.formatarNumeroGrande(item.market_cap),
     logo:item.logo,
     sector:item.sector,
-    type:item.type
+    type:item.type,
+    detalhes:null
   }))
   }
 

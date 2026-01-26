@@ -23,20 +23,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let stock of stocksPaginados">
-              <td>
-                <div class="div-img">
-                  <img class="logo" src={{stock.logo}} alt="">
-                </div>
+            <ng-container *ngFor="let stock of stocksPaginados">
+              <tr (click)="expandirDetalhes(stock)"
+                class="linha-principal">
+                <td>
+                  <div class="div-img">
+                    <img class="logo" src={{stock.logo}} alt="">
+                  </div>
+                </td>
+                <td>{{ stock.stock }}</td>
+                <td>{{ stock.name }}</td>
+                <td class="valor-direita">{{ stock.closeString }}</td>
+                <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
+                <td class="valor-direita">{{ stock.volume }}</td>
+                <td class="valor-direita">{{ stock.marketcap }}</td>
+                <td>{{ stock.sector }}</td>
+              </tr>
+
+              <tr *ngIf="linhaExpandida === stock.stock" class="linha-detalhes">
+              <td colspan="4">
+                <strong>P/L: {{stock.detalhes?.priceEarnings}}</strong>  <br />
+                <strong>EPS:{{stock.detalhes?.earningsPerShare}}</strong>  <br />
+                <strong>Market Cap:{{stock.marketcap}}</strong>  <br />
+                <strong>52 semanas mínimo:{{stock.detalhes?.fiftyTwoWeekLow}}</strong>  <br />
+                <strong>52 semanas máximo:{{stock.detalhes?.fiftyTwoWeekLow}}</strong>  <br />
+                <strong>Abertura:{{stock.detalhes?.regularMarketOpen}}</strong>  <br />
+                <strong>Fechamento anterior:{{stock.detalhes?.regularMarketPreviousClose}}</strong>  <br />
               </td>
-              <td>{{ stock.stock }}</td>
-              <td>{{ stock.name }}</td>
-              <td class="valor-direita">{{ stock.closeString }}</td>
-              <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
-              <td class="valor-direita">{{ stock.volume }}</td>
-              <td class="valor-direita">{{ stock.marketcap }}</td>
-              <td>{{ stock.sector }}</td>
             </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>

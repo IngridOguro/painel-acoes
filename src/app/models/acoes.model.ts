@@ -1,3 +1,5 @@
+import { AcaoDetalhe } from "./acao.model";
+
 export interface Acao {
   stock: string;
   name: string;
@@ -10,4 +12,5 @@ export interface Acao {
   logo:string;
   sector:string;
   type:string;
+  detalhes: AcaoDetalhe | null;
 }
