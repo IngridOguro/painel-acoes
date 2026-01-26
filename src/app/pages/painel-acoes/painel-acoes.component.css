@@ -160,3 +160,27 @@ footer{
 }
 
 
+.linha-detalhes{
+    width: 100%;
+}
+
+.secao-detalhes{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.detalhes{
+  background-color:  #bcf8ff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.8vw;
+  padding: 0.5vh 0;
+  margin: 3px 0;
+}
+
+.linha-detalhes:hover{
+  background-color: white;
+}

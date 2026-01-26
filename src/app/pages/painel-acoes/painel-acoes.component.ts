@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PainelAcoesService } from '../../services/painel-acoes.service';
-import {JsonPipe} from '@angular/common'
-import { NgIf, NgFor, NgClass,DecimalPipe, CommonModule } from '@angular/common';
+import { NgIf, NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Acao } from '../../models/acoes.model';
 import { AcaoDetalhe } from '../../models/acao.model';
@@ -9,7 +8,7 @@ import { AcaoDetalhe } from '../../models/acao.model';
 @Component({
   selector: 'app-painel-acoes',
   standalone: true,
-  imports: [JsonPipe,NgIf,NgFor,NgClass,DecimalPipe, CommonModule,FormsModule ],
+  imports: [NgIf,NgFor,NgClass, CommonModule,FormsModule ],
   templateUrl: './painel-acoes.component.html',
   styleUrl: './painel-acoes.component.css'
 })

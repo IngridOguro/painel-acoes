@@ -41,15 +41,23 @@
               </tr>
 
               <tr *ngIf="linhaExpandida === stock.stock" class="linha-detalhes">
-              <td colspan="4">
-                <strong>P/L: {{stock.detalhes?.priceEarnings}}</strong>  <br />
-                <strong>EPS:{{stock.detalhes?.earningsPerShare}}</strong>  <br />
-                <strong>Market Cap:{{stock.marketcap}}</strong>  <br />
-                <strong>52 semanas mínimo:{{stock.detalhes?.fiftyTwoWeekLow}}</strong>  <br />
-                <strong>52 semanas máximo:{{stock.detalhes?.fiftyTwoWeekLow}}</strong>  <br />
-                <strong>Abertura:{{stock.detalhes?.regularMarketOpen}}</strong>  <br />
-                <strong>Fechamento anterior:{{stock.detalhes?.regularMarketPreviousClose}}</strong>  <br />
-              </td>
+                <td colspan="100%">
+                  <div class="secao-detalhes">
+                    <div class="detalhes">
+                      <p>P/L: {{stock.detalhes?.priceEarnings}}</p>  <br />
+                      <p>EPS:{{stock.detalhes?.earningsPerShare}}</p>  <br />
+                    </div>
+                    <div class="detalhes">
+                      <p>52 semanas mínimo:{{stock.detalhes?.fiftyTwoWeekLow}}</p>  <br />
+                      <p>52 semanas máximo:{{stock.detalhes?.fiftyTwoWeekLow}}</p>
+                    </div>
+                    <div class="detalhes">
+                      <p>Abertura:{{stock.detalhes?.regularMarketOpen}}</p>  <br />
+                      <p>Fechamento anterior:{{stock.detalhes?.regularMarketPreviousClose}}</p>  <br />
+                      <p>Horário da cotação:{{stock.detalhes?.regularMarketTime}}</p>
+                    </div>
+                  </div>
+                </td>
             </tr>
             </ng-container>
           </tbody>
