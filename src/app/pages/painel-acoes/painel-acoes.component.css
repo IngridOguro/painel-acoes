@@ -128,3 +128,22 @@ tr:hover {
 .valor-zero {
   color: black;
 }
+
+.controle-paginacao{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  background-color: rgb(156, 213, 213);
+  padding: 1vh 0;
+}
+
+.controle-paginacao > button{
+  margin: 0 1vw;
+  width: 15%;
+}
+
+.controle-paginacao > p{
+  margin: 0 1vw;
+  font-size: 1vw;
+}

@@ -8,11 +8,10 @@
     <div class="input-div">
       <input
         type="text"
-        placeholder="Filtrar por nome"
+        placeholder="Símbolo"
         [(ngModel)]="filtroCodigo"
         class="filtro-input"
       />
-      <button>🔍</button>
     </div>
 
   </div>
@@ -31,7 +30,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let stock of stocksFiltrados">
+          <tr *ngFor="let stock of stocksPaginados">
+
             <td>
               <div class="div-img">
                 <img class="logo" src={{stock.logo}} alt="">
@@ -47,6 +47,18 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="controle-paginacao">
+      <p>Total de itens: {{totalItens}}</p>
+      <p>Pagina: {{paginaAtual}}</p>
+      <button (click)="paginaAtual = paginaAtual - 1" [disabled]="paginaAtual === 1">
+        Anterior
+      </button>
+
+      <button (click)="paginaAtual = paginaAtual + 1"
+              [disabled]="paginaAtual * itensPorPagina >= stocks.length">
+        Próxima
+      </button>
     </div>
   </div>
 </main>

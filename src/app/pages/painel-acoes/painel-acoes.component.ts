@@ -17,12 +17,22 @@ export class PainelAcoesComponent implements OnInit{
   stocks: Acao[] = [];
   loading = false;
   error = false;
+  paginaAtual = 1;
+  itensPorPagina = 12;
+  totalItens=0;
 
  constructor(private painelAcoesService: PainelAcoesService) {}
 
   ngOnInit(): void {
     this.carregarAcoes();
   }
+
+get stocksPaginados(): Acao[] {
+  const inicio = (this.paginaAtual - 1) * this.itensPorPagina;
+  const fim = inicio + this.itensPorPagina;
+  return this.stocksFiltrados.slice(inicio, fim);
+}
+
 
 filtroCodigo: string = '';
 
@@ -74,6 +84,7 @@ ordenarPor(coluna: keyof Acao): void {
   this.painelAcoesService.obterAcoes().subscribe({
     next: (response) => {
       this.stocks = this.mapearAcoes(response.stocks);
+      this.totalItens = this.stocks.length;
       this.loading = false;
     },
     error: () => {
