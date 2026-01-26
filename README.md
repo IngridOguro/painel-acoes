@@ -1,41 +1,39 @@
-📊 Painel de Ações (Angular)
+# 📊Canguro - Painel de Ações (Angular)
 
-Projeto frontend desenvolvido em Angular para exibição de ações da bolsa, com foco em organização de dados, interação do usuário e boas práticas de UI.
+Projeto frontend desenvolvido em Angular para exibição de ações da bolsa, integrado à API brapi.dev.
+
+[Visite o painel online!](https://canguro-painel-acoes.vercel.app/)
 
 ✨ Funcionalidades
 
-Listagem de ações em formato de tabela
+- Listagem de ações em formato de tabela
 
-Ordenação por colunas (nome, preço, variação, etc.)
+- Ordenação por colunas ( preço, variação, etc.)
 
-Filtro por código da ação (ex: BBAS3)
+- Filtro por código da ação (ex: BBAS3)
 
-Paginação (15 registros por página)
+- Linha expansível (accordion) para exibir detalhes da ação
 
-Linha expansível (accordion) para exibir detalhes da ação
+## 🧠 Decisões de implementação
 
-Formatação de valores numéricos (exibição) separada da lógica de negócio
+-  Valores numéricos são mantidos em formato bruto (number) para ordenação e regras
 
-🧠 Decisões de implementação
+- Versões formatadas (string) são usadas apenas para exibição no template
 
-Valores numéricos são mantidos em formato bruto (number) para ordenação e regras
+- Detalhes da ação são carregados sob demanda ao clicar na linha
 
-Versões formatadas (string) são usadas apenas para exibição no template
+- Componentes e serviços organizados para facilitar manutenção e leitura
 
-Detalhes da ação são carregados sob demanda ao clicar na linha
+## 🛠️ Tecnologias
 
-Componentes e serviços organizados para facilitar manutenção e leitura
+- Angular
 
-🛠️ Tecnologias
+- TypeScript
 
-Angular
+- HTML / CSS
 
-TypeScript
+- Consumo de API REST
 
-HTML / CSS
-
-Consumo de API REST
-
-▶️ Como executar
+### ▶️ Como executar
 npm install
 ng serve
