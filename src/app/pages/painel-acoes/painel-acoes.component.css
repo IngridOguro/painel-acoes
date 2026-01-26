@@ -7,10 +7,12 @@
 
 header{
   height: 10vh;
+  width: 100%;
   background-color:cornflowerblue;
   display: flex;
   justify-content:space-around;
   align-items: center;
+  position:fixed
 }
 
 header>div{
@@ -28,12 +30,13 @@ header>p{
 }
 
 main{
-  height: 90vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color:azure;
+  padding: 10vh 0;
 }
 
 .painel-div{
@@ -108,14 +111,13 @@ table {
 th, td {
   border-right: 1px solid #b9b9b9c3;
   border-bottom: 1px solid #ccc;
-  padding: 10px 15px;
+  padding: 5px 5px;
   text-align: left;
 }
 
 th {
   background-color: white;
   font-weight: bold;
-  font-size: 1vw;
 }
 
 th:hover{
@@ -199,4 +201,51 @@ footer{
 
 .linha-detalhes:hover{
   background-color: white;
+}
+
+
+@media screen and (max-width: 827px) {
+
+  .painel-div{
+  width: 90%;}
+
+  .tabela-div{
+  overflow-x: scroll;
+}
+
+th, td {
+  font-size: 2vw;
+  padding: 5px 5px;
+}
+
+
+.div-img{
+  height: 3vh;
+}
+
+}
+
+
+@media screen and (max-width: 577px) {
+  .painel-div{
+  width: 95%;}
+
+header>p{
+  color: white;
+  font-size: 4vh;
+}
+
+.controle-paginacao > p{
+  margin: 0 1vw;
+  font-size: 3vw;
+}
+
+.controle-paginacao > p{
+  margin: 0 1vw;
+  font-size: 3vw;
+}
+
+.controle-paginacao > button{
+  font-size: 3vw;
+}
 }

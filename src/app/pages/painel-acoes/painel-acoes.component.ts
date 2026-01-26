@@ -19,7 +19,7 @@ export class PainelAcoesComponent implements OnInit{
   loading = false;
   error = false;
   paginaAtual = 1;
-  itensPorPagina = 12;
+  itensPorPagina = 15;
   totalItens=0;
   linhaExpandida: string | null = null;
 
