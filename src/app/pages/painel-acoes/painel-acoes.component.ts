@@ -44,12 +44,10 @@ export class PainelAcoesComponent implements OnInit{
   this.painelAcoesService.obterAcao(ticket).subscribe({
     next: (response) => {
       const detalhes = this.mapearAcao(response.results[0]);
-
       const acao = this.stocks.find(s => s.stock === ticket);
       if (acao) {
         acao.detalhes = detalhes;
       }
-      console.log(acao);
     },
     error: () => {
       this.error = true;
@@ -81,7 +79,6 @@ colunaOrdenada: string | null = null;
 ordemAscendente: boolean = true;
 
 ordenarPor(coluna: keyof Acao): void {
-  console.log(this.stock);
   if (this.colunaOrdenada === coluna) {
     this.ordemAscendente = !this.ordemAscendente;
   } else {
@@ -128,15 +125,21 @@ ordenarPor(coluna: keyof Acao): void {
   mapearAcao(results: any): AcaoDetalhe {
     return {
     priceEarnings: results.priceEarnings,
+    priceEarningsString:  this.formatarDuasCasas(results.priceEarnings),
     earningsPerShare: results.earningsPerShare ,
+    earningsPerShareString: this.formatarDuasCasas(results.earningsPerShare),
     marketCap: results.marketCap ,
     fiftyTwoWeekLow: results.fiftyTwoWeekLow ,
+    fiftyTwoWeekLowString: this.formatarDuasCasas(results.fiftyTwoWeekLow) ,
     fiftyTwoWeekHigh: results.fiftyTwoWeekHigh ,
+    fiftyTwoWeekHighString: this.formatarDuasCasas(results.fiftyTwoWeekHigh) ,
     fiftyTwoWeekRange: results.fiftyTwoWeekRange ,
     regularMarketOpen: results.regularMarketOpen ,
+    regularMarketOpenString: this.formatarDuasCasas(results.regularMarketOpen) ,
     regularMarketPreviousClose: results.regularMarketPreviousClose ,
+    regularMarketPreviousCloseString: this.formatarDuasCasas(results.regularMarketPreviousClose) ,
     regularMarketPrice: results.regularMarketPrice ,
-    regularMarketTime: results.regularMarketTime
+    regularMarketTime: this.formatarData(results.regularMarketTime)
     }
   }
 
@@ -164,6 +167,17 @@ getClasseVariacao(valor: number): string {
   if (valor < 0) return 'valor-negativo';
   return 'valor-zero';
   }
+
+formatarData(dataIso: string | null | undefined): string {
+  if (!dataIso) {
+    return 'N/A';
+  }
+
+  const data = new Date(dataIso);
+
+  return data.toLocaleDateString('pt-BR');
+}
+
 
 formatarDuasCasas(valor: number | null | undefined): string {
   if (valor == null){

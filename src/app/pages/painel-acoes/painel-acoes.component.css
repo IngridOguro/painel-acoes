@@ -188,14 +188,19 @@ footer{
   justify-content: space-around;
 }
 
+.detalhes > p{
+  width: 30%;
+}
+
 .detalhes{
   background-color:  #bcf8ff;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content:left;
   align-items: center;
   font-size: 0.8vw;
   padding: 0.5vh 0;
+  padding-left: 3vw;
   margin: 3px 0;
 }
 
@@ -205,11 +210,19 @@ footer{
 
 
 @media screen and (max-width: 827px) {
+.detalhes{
+  padding-left: 0;
+}
 
-  .painel-div{
-  width: 90%;}
+.detalhes>p{
+  font-size: 2vw;
+}
 
-  .tabela-div{
+.painel-div{
+  width: 90%;
+}
+
+.tabela-div{
   overflow-x: scroll;
 }
 
@@ -227,7 +240,7 @@ th, td {
 
 
 @media screen and (max-width: 577px) {
-  .painel-div{
+.painel-div{
   width: 95%;}
 
 header>p{
