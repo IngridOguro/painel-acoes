@@ -1,27 +1,41 @@
-# PainelAcoes
+📊 Painel de Ações (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Projeto frontend desenvolvido em Angular para exibição de ações da bolsa, com foco em organização de dados, interação do usuário e boas práticas de UI.
 
-## Development server
+✨ Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Listagem de ações em formato de tabela
 
-## Code scaffolding
+Ordenação por colunas (nome, preço, variação, etc.)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Filtro por código da ação (ex: BBAS3)
 
-## Build
+Paginação (15 registros por página)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Linha expansível (accordion) para exibir detalhes da ação
 
-## Running unit tests
+Formatação de valores numéricos (exibição) separada da lógica de negócio
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+🧠 Decisões de implementação
 
-## Running end-to-end tests
+Valores numéricos são mantidos em formato bruto (number) para ordenação e regras
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Versões formatadas (string) são usadas apenas para exibição no template
 
-## Further help
+Detalhes da ação são carregados sob demanda ao clicar na linha
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Componentes e serviços organizados para facilitar manutenção e leitura
+
+🛠️ Tecnologias
+
+Angular
+
+TypeScript
+
+HTML / CSS
+
+Consumo de API REST
+
+▶️ Como executar
+npm install
+ng serve
