@@ -3,7 +3,7 @@
     <div>
       <img class="logo-header" src="/favicon.png" alt="">
     </div>
-    <p>Canguro - Painel de Ações</p>
+    <p>Canguro - Painel de ações da bolsa</p>
   </header>
   <main>
     <div class="painel-div">
@@ -39,8 +39,8 @@
                 <td>{{ stock.name }}</td>
                 <td class="valor-direita">{{ stock.closeString }}</td>
                 <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
-                <td class="valor-direita">{{ stock.volume }}</td>
-                <td class="valor-direita">{{ stock.marketcap }}</td>
+                <td class="valor-direita">{{ stock.volumeString }}</td>
+                <td class="valor-direita">{{ stock.marketcapString }}</td>
                 <td>{{ stock.sector }}</td>
               </tr>
 

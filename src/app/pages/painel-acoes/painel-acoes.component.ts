@@ -81,6 +81,7 @@ colunaOrdenada: string | null = null;
 ordemAscendente: boolean = true;
 
 ordenarPor(coluna: keyof Acao): void {
+  console.log(this.stock);
   if (this.colunaOrdenada === coluna) {
     this.ordemAscendente = !this.ordemAscendente;
   } else {
@@ -147,8 +148,10 @@ ordenarPor(coluna: keyof Acao): void {
     closeString: this.formatarDuasCasas(item.close),
     change:item.change,
     changeString: this.formatarDuasCasas(item.change),
-    volume:this.formatarNumeroGrande(item.volume),
-    marketcap:this.formatarNumeroGrande(item.market_cap),
+    volume:item.volume,
+    volumeString:this.formatarNumeroGrande(item.volume),
+    marketcap:item.market_cap,
+    marketcapString:this.formatarNumeroGrande(item.market_cap),
     logo:item.logo,
     sector:item.sector,
     type:item.type,

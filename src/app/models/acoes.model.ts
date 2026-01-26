@@ -7,8 +7,10 @@ export interface Acao {
   closeString: string;
   change:number;
   changeString:string;
-  volume:string;
-  marketcap:string;
+  volume:number;
+  volumeString:string;
+  marketcap:number;
+  marketcapString:string;
   logo:string;
   sector:string;
   type:string;
