@@ -24,16 +24,18 @@ export class PainelAcoesComponent implements OnInit{
     this.carregarAcoes();
   }
 
-  filtroNome: string = '';
+filtroCodigo: string = '';
 
-  get stocksFiltrados(): Acao[] {
-    if (!this.filtroNome) {
-      return this.stocks;
-    }
-    return this.stocks.filter(stock =>
-      stock.name.toLowerCase().includes(this.filtroNome.toLowerCase())
-    );
+get stocksFiltrados(): Acao[] {
+  if (!this.filtroCodigo) {
+    return this.stocks;
   }
+
+  return this.stocks.filter(stock =>
+    stock.stock.toLowerCase().includes(this.filtroCodigo.toLowerCase())
+  );
+}
+
 
 colunaOrdenada: string | null = null;
 ordemAscendente: boolean = true;

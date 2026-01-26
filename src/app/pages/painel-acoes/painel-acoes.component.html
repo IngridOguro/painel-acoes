@@ -1,50 +1,52 @@
 <header>
-  Bolsa de Valores
+
 </header>
 <main>
 
-<div class="tabela-div">
+<div class="painel-div">
   <div class="tabela-cabeçalho-div">
     <div class="input-div">
       <input
         type="text"
         placeholder="Filtrar por nome"
-        [(ngModel)]="filtroNome"
+        [(ngModel)]="filtroCodigo"
         class="filtro-input"
       />
       <button>🔍</button>
     </div>
 
   </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Código</th>
-          <th scope="col">Nome</th>
-          <th scope="col" (click)="ordenarPor('close')">Fechamento</th>
-          <th scope="col" (click)="ordenarPor('change')">Variação (%)</th>
-          <th scope="col" (click)="ordenarPor('volume')">Volume</th>
-          <th scope="col" (click)="ordenarPor('marketcap')">Captação de mercado</th>
-          <th scope="col" (click)="ordenarPor('sector')">Setor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let stock of stocks">
-          <td>
-            <div class="div-img">
-              <img class="logo" src={{stock.logo}} alt="">
-            </div>
-          </td>
-          <td>{{ stock.stock }}</td>
-          <td>{{ stock.name }}</td>
-          <td class="valor-direita">{{ stock.closeString }}</td>
-          <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
-          <td class="valor-direita">{{ stock.volume }}</td>
-          <td class="valor-direita">{{ stock.marketcap }}</td>
-          <td>{{ stock.sector }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="tabela-div">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col" (click)="ordenarPor('close')">Fechamento</th>
+            <th scope="col" (click)="ordenarPor('change')">Variação (%)</th>
+            <th scope="col" (click)="ordenarPor('volume')">Volume</th>
+            <th scope="col" (click)="ordenarPor('marketcap')">Captação de mercado</th>
+            <th scope="col" (click)="ordenarPor('sector')">Setor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stock of stocksFiltrados">
+            <td>
+              <div class="div-img">
+                <img class="logo" src={{stock.logo}} alt="">
+              </div>
+            </td>
+            <td>{{ stock.stock }}</td>
+            <td>{{ stock.name }}</td>
+            <td class="valor-direita">{{ stock.closeString }}</td>
+            <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
+            <td class="valor-direita">{{ stock.volume }}</td>
+            <td class="valor-direita">{{ stock.marketcap }}</td>
+            <td>{{ stock.sector }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </main>
