@@ -1,64 +1,57 @@
-<header>
-
-</header>
-<main>
-
-<div class="painel-div">
-  <div class="tabela-cabeçalho-div">
-    <div class="input-div">
-      <input
-        type="text"
-        placeholder="Símbolo"
-        [(ngModel)]="filtroCodigo"
-        class="filtro-input"
-      />
+<div class="conteiner">
+  <header>
+  </header>
+  <main>
+    <div class="painel-div">
+      <div class="tabela-cabeçalho-div">
+        <div class="input-div">
+          <input type="text" placeholder="Símbolo" [(ngModel)]="filtroCodigo" class="filtro-input" />
+        </div>
+      </div>
+      <div class="tabela-div">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Código</th>
+              <th scope="col">Nome</th>
+              <th scope="col" (click)="ordenarPor('close')">Fechamento</th>
+              <th scope="col" (click)="ordenarPor('change')">Variação (%)</th>
+              <th scope="col" (click)="ordenarPor('volume')">Volume</th>
+              <th scope="col" (click)="ordenarPor('marketcap')">Captação de mercado</th>
+              <th scope="col" (click)="ordenarPor('sector')">Setor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stock of stocksPaginados">
+              <td>
+                <div class="div-img">
+                  <img class="logo" src={{stock.logo}} alt="">
+                </div>
+              </td>
+              <td>{{ stock.stock }}</td>
+              <td>{{ stock.name }}</td>
+              <td class="valor-direita">{{ stock.closeString }}</td>
+              <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
+              <td class="valor-direita">{{ stock.volume }}</td>
+              <td class="valor-direita">{{ stock.marketcap }}</td>
+              <td>{{ stock.sector }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="controle-paginacao">
+        <p>Total de itens: {{totalItens}}</p>
+        <p>Pagina: {{paginaAtual}}</p>
+        <button (click)="paginaAtual = paginaAtual - 1" [disabled]="paginaAtual === 1">
+          Anterior
+        </button>
+        <button (click)="paginaAtual = paginaAtual + 1" [disabled]="paginaAtual * itensPorPagina >= stocks.length">
+          Próxima
+        </button>
+      </div>
     </div>
-
-  </div>
-  <div class="tabela-div">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Código</th>
-            <th scope="col">Nome</th>
-            <th scope="col" (click)="ordenarPor('close')">Fechamento</th>
-            <th scope="col" (click)="ordenarPor('change')">Variação (%)</th>
-            <th scope="col" (click)="ordenarPor('volume')">Volume</th>
-            <th scope="col" (click)="ordenarPor('marketcap')">Captação de mercado</th>
-            <th scope="col" (click)="ordenarPor('sector')">Setor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let stock of stocksPaginados">
-
-            <td>
-              <div class="div-img">
-                <img class="logo" src={{stock.logo}} alt="">
-              </div>
-            </td>
-            <td>{{ stock.stock }}</td>
-            <td>{{ stock.name }}</td>
-            <td class="valor-direita">{{ stock.closeString }}</td>
-            <td [ngClass]="['valor-direita', getClasseVariacao(stock.change)]">{{ stock.changeString }}</td>
-            <td class="valor-direita">{{ stock.volume }}</td>
-            <td class="valor-direita">{{ stock.marketcap }}</td>
-            <td>{{ stock.sector }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="controle-paginacao">
-      <p>Total de itens: {{totalItens}}</p>
-      <p>Pagina: {{paginaAtual}}</p>
-      <button (click)="paginaAtual = paginaAtual - 1" [disabled]="paginaAtual === 1">
-        Anterior
-      </button>
-
-      <button (click)="paginaAtual = paginaAtual + 1"
-              [disabled]="paginaAtual * itensPorPagina >= stocks.length">
-        Próxima
-      </button>
-    </div>
-  </div>
-</main>
+  </main>
+  <footer>
+  </footer>
+</div>
