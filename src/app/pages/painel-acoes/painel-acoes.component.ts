@@ -112,6 +112,7 @@ ordenarPor(coluna: keyof Acao): void {
   this.painelAcoesService.obterAcoes().subscribe({
     next: (response) => {
       this.stocks = this.mapearAcoes(response.stocks);
+      console.log(this.stocks);
       this.totalItens = this.stocks.length;
       this.loading = false;
     },
