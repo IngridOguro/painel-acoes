@@ -5,15 +5,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PainelAcoesService {
-  private baseUrl = 'https://brapi.dev/api/quote';
+  private baseUrl = 'https://api-v2.brapi.dev/api/quote';
   private readonly token = 'kMQQvei35hYMNqzH58pm4m';
 
   constructor(private http: HttpClient) { }
 
   obterAcoes() {
     const url =
-    `${this.baseUrl}/list/?limit=50&token=${this.token}`;
-
+    `${this.baseUrl}/list?limit=50&token=${this.token}`;
   return this.http.get<any>(url, {
     responseType: 'json'
   });
